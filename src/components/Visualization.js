@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Visualization = ( {barWidth, arr} ) => (
-    <div style={visualizationContainer}>
+    <div className = 'visualizationContainer'>
         {
         arr.map((value, index) => (
         <div
@@ -19,16 +19,4 @@ const Visualization = ( {barWidth, arr} ) => (
 
 export default Visualization 
 
-
-//styles
-const visualizationContainer = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    width: '100%',
-    backgroundColor: 'darkgray',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '3px solid hsl(60, 100%, 40%, 0.75)',
-  }
 

@@ -1,50 +1,53 @@
-import {sleep} from './sleep'
+import {sleep, currentMinColor, outOfOrderColor, correctOrderColor, originalColor, analyzedColor, swappingColor, finalOrderColor} from './utils'
 
-let minArr = []
-let swaps = []
-export async function animateSelectionSort() {
-    
+
+export const  selectionSort = async (arr, speed) => {
     const bar = document.querySelectorAll('.oneBar')
-    for(let i = 0 ; i < swaps.length;i++) {
-        let height1 = bar[swaps[i][0]].style.height
-        let height2 = bar[swaps[i][1]].style.height        
-        bar[swaps[i][0]].style.backgroundColor = 'blue'
-        bar[swaps[i][1]].style.backgroundColor = 'blue'
-        await sleep(200)
-        bar[swaps[i][0]].style.height = height2
-        bar[swaps[i][1]].style.height = height1
-        bar[swaps[i][0]].style.backgroundColor = 'rgb(0, 204, 0)'
-        bar[swaps[i][1]].style.backgroundColor = 'yellow'
-    }
-    for(let i=0; i<bar.length ; i++) {
-        bar[i].style.backgroundColor = 'black'
-        await sleep(20)
-        bar[i].style.backgroundColor = 'rgb(0, 204, 0)'
-    }
 
-}
-
-
-export function selectionSort(arr) {
-    minArr = []
-    swaps = []
-    let len = arr.length;
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < arr.length; i++) {
         let min = i;
-        minArr.push(min)
-        
-        for (let j = i + 1; j < len; j++) {
+        bar[min].style.backgroundColor = currentMinColor
+        await sleep(speed)
+
+        for (let j = i + 1; j < arr.length; j++) {
+            bar[j].style.backgroundColor = analyzedColor
+            await sleep(speed)
             if (arr[min] > arr[j]) {
+                bar[j].style.backgroundColor = outOfOrderColor
+                await sleep(speed)
+                bar[min].style.backgroundColor = swappingColor
+                bar[j].style.backgroundColor = swappingColor
+                await sleep(speed)
+                bar[min].style.backgroundColor = originalColor
+                bar[j].style.backgroundColor = currentMinColor
+                await sleep(speed)
                 min = j;
-                minArr.push(min)
+            } else {
+                bar[j].style.backgroundColor = correctOrderColor
+                await sleep(speed)
+                bar[j].style.backgroundColor = originalColor
             }
         }
+
         if (min !== i) {
-            swaps.push([i,min])
             let temp = arr[i];
+            bar[min].style.backgroundColor = swappingColor
+            bar[i].style.backgroundColor = swappingColor
+            await sleep(speed)
+            let bar1Height = bar[min].style.height
+            let bar2Height = bar[i].style.height
+            bar[min].style.height = bar2Height
+            bar[i].style.height = bar1Height
+            await sleep(speed)
             arr[i] = arr[min];
-            arr[min] = temp;
+            arr[min] = temp;   
+            bar[i].style.backgroundColor = finalOrderColor
+            bar[min].style.backgroundColor = originalColor
+            await sleep(speed)
+        } else {
+            bar[min].style.backgroundColor = finalOrderColor
+            await sleep(speed)
         }
     }
-    return arr;
+    bar[arr.length-1].style.backgroundColor = finalOrderColor
 }

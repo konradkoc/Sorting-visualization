@@ -2,10 +2,9 @@ import React, { Component, Fragment } from 'react'
 import Header from './Header'
 import Visualization from './Visualization'
 import ButtonList from './ButtonList'
-import {bubbleSort} from '../sortingAlgo/bubbleSort'
-import {quickSort, animateQuickSort} from '../sortingAlgo/quickSort'
-import {mergeSort, animateMergeSort} from '../sortingAlgo/mergeSort'
-import { selectionSort, animateSelectionSort } from '../sortingAlgo/selectionSort'
+import { bubbleSort } from '../sortingAlgo/bubbleSort'
+import { selectionSort } from '../sortingAlgo/selectionSort'
+import { quickSort } from '../sortingAlgo/quickSort'
 
 
 function randomNumber(min, max) {
@@ -23,7 +22,8 @@ export class MainComp extends Component {
         maxArrayLength: Math.floor(window.innerWidth/6)-2, //1 bar is 6px with margins so this is max amount of bars on the screen without horizontal scroll, -2 is just for safety
         //this one is about max height of the bar, max value possible in the array
         maxHeight: Math.floor(0.75*window.innerHeight), //0.75 cause bars are not on 100% OF VH
-        singleBarWidth: 2
+        singleBarWidth: 2,
+        animationOn: false,
         }
     }
     
@@ -74,26 +74,19 @@ export class MainComp extends Component {
 
     //SORTING
     bubbleSortVis = () => {
-        bubbleSort(this.state.arr)
-        this.setState({arr: bubbleSort(this.state.arr) })
-    }
-
-    quickSortVis = () => {
-        quickSort(this.state.arr, 0 , this.state.arrayLength-1) // first call
-        animateQuickSort()
-        this.setState({arr: quickSort(this.state.arr)})
-    }
-
-    mergeSortVis = () => {
-        mergeSort(this.state.arr)
-        animateMergeSort()
-        // this.setState({arr: mergeSort(this.state.arr)})
+        bubbleSort(this.state.arr, 100)
+        this.setState ({ animationOn: true })
     }
 
     selectionSortVis = () => {
-        selectionSort(this.state.arr)
-        animateSelectionSort()
-        // this.setState({arr: selectionSort(this.state.arr)})
+        selectionSort(this.state.arr, 50)
+        this.setState ({ animationOn: true })
+
+    }
+
+    quickSortVis = () => {
+        quickSort(this.state.arr, 0 , this.state.arrayLength -1, 100)
+        this.setState ({ animationOn: true })
     }
 
     render() {
@@ -102,9 +95,11 @@ export class MainComp extends Component {
                 <Header maxValue = {this.state.maxArrayLength} 
                         value = {this.state.arrayLength} 
                         chooseValue={this.chooseValue} 
-                        newArray={this.newArray}/>
+                        newArray={this.newArray}
+                        animationOn = {this.state.animationOn}/>
+
                 <Visualization arr={this.state.arr} barWidth={this.state.singleBarWidth}/>
-                <ButtonList bubble = {this.bubbleSortVis} quick = {this.quickSortVis} merge={this.mergeSortVis} selection={this.selectionSortVis}/>
+                <ButtonList bubble = {this.bubbleSortVis} selection={this.selectionSortVis} quick={this.quickSortVis}/>
             </Fragment>
         )
     }

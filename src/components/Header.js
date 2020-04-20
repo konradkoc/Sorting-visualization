@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Header = ( {value, maxValue , chooseValue, newArray} ) => (
-    <div style = {containerStyle}>
-        <div style={labelStyle}>
+const Header = ( {value, maxValue , chooseValue, newArray, animationOn} ) => (
+    <div style = {containerStyle}>  
+        <div className='generateButton'>
             <label htmlFor="arrLength">Array length: {value}</label>
         </div>
         <div style={rangeStyle}>
@@ -28,18 +28,9 @@ export default Header
 
 const containerStyle = {
     padding: '5px',
-    // display: 'flex',
-    // alignItems: 'flex-center '
+
 }
 
-const labelStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'black',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '3px solid hsl(60, 100%, 40%, 0.75)'
-}
 
 const rangeStyle = {
     display: 'flex',
