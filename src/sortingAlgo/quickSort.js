@@ -1,18 +1,26 @@
-import { sleep, pivotColor, outOfOrderColor, correctOrderColor, originalColor, analyzedColor, swappingColor, finalOrderColor } from './utils'
+import { sleep, pivotColor, correctOrderColor, originalColor, analyzedColor, swappingColor, finalOrderColor } from './utils'
 
 export const quickSort =  async (arr, left, right, speed) => {
     const bar = document.querySelectorAll('.oneBar')
     let index;
     if (arr.length > 1) {
         index = await partition(arr, left, right, speed) //index returned from partition
+        bar[index].style.backgroundColor = originalColor
+        sleep(speed)
         if (left < index - 1) { //more elements on the left side of the pivot
             await quickSort(arr, left, index - 1, speed)
+            bar[left].style.backgroundColor = finalOrderColor
+            bar[index - 1].style.backgroundColor = finalOrderColor
+
         }
         if (index < right) { //more elements on the right side of the pivot
             await quickSort(arr, index, right, speed)
+            bar[index].style.backgroundColor = finalOrderColor
+            bar[right].style.backgroundColor = finalOrderColor
+
         }
 
-    } 
+    }
 }
 
 // swapping
@@ -59,6 +67,7 @@ export async function partition(arr, left, right, speed) {
             bar[i].style.backgroundColor = correctOrderColor
             await sleep(speed)
             bar[i].style.backgroundColor = originalColor
+            await sleep(speed)
             i++
         }
 
@@ -68,6 +77,7 @@ export async function partition(arr, left, right, speed) {
             bar[j].style.backgroundColor = correctOrderColor
             await sleep(speed)
             bar[j].style.backgroundColor = originalColor
+            await sleep(speed)
             j--
         }
 
@@ -77,7 +87,7 @@ export async function partition(arr, left, right, speed) {
             j--
         }
     }
-
+   
     return i
 }
 
