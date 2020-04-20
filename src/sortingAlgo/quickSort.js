@@ -9,13 +9,13 @@ export const quickSort =  async (arr, left, right, speed) => {
         sleep(speed)
         if (left < index - 1) { //more elements on the left side of the pivot
             await quickSort(arr, left, index - 1, speed)
-            bar[left].style.backgroundColor = finalOrderColor
+            bar[left].style.backgroundColor = finalOrderColor //correct order
             bar[index - 1].style.backgroundColor = finalOrderColor
 
         }
         if (index < right) { //more elements on the right side of the pivot
             await quickSort(arr, index, right, speed)
-            bar[index].style.backgroundColor = finalOrderColor
+            bar[index].style.backgroundColor = finalOrderColor //correct order
             bar[right].style.backgroundColor = finalOrderColor
 
         }
@@ -23,21 +23,21 @@ export const quickSort =  async (arr, left, right, speed) => {
     }
 }
 
-// swapping
-export async function swap(arr, leftIndex, rightIndex, speed) {
+// swapping 
+export const swap = async (arr, leftIndex, rightIndex, speed) => {
     const bar = document.querySelectorAll('.oneBar')
     bar[leftIndex].style.backgroundColor = swappingColor
     bar[rightIndex].style.backgroundColor = swappingColor
     await sleep(speed)
-    let bar1Height = bar[leftIndex].style.height
-    let bar2Height = bar[rightIndex].style.height
+    const bar1Height = bar[leftIndex].style.height
+    const bar2Height = bar[rightIndex].style.height
     bar[leftIndex].style.height = bar2Height
     bar[rightIndex].style.height = bar1Height
     await sleep(speed)
     bar[leftIndex].style.backgroundColor = swappingColor
     bar[rightIndex].style.backgroundColor = swappingColor
     await sleep(speed)
-    bar[leftIndex].style.backgroundColor = correctOrderColor
+    bar[leftIndex].style.backgroundColor = correctOrderColor //after swap
     bar[rightIndex].style.backgroundColor = correctOrderColor
     await sleep(speed)
     bar[leftIndex].style.backgroundColor = originalColor
@@ -49,7 +49,7 @@ export async function swap(arr, leftIndex, rightIndex, speed) {
 
 }
 
-export async function partition(arr, left, right, speed) {
+export const partition = async (arr, left, right, speed) => {
     const bar = document.querySelectorAll('.oneBar')
     const pivotIndex = Math.floor((right + left) / 2) //middle element
     const pivot   = arr[pivotIndex]
@@ -86,8 +86,7 @@ export async function partition(arr, left, right, speed) {
             i++
             j--
         }
-    }
-   
+    }  
     return i
 }
 
