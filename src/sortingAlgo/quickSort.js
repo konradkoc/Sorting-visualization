@@ -1,30 +1,30 @@
 import { sleep, pivotColor, correctOrderColor, originalColor, analyzedColor, swappingColor, finalOrderColor } from './utils'
 
-export const quickSort =  async (arr, left, right, speed) => {
+export const quickSortLast = async (arr) => {
     const bar = document.querySelectorAll('.oneBar')
+        for ( let i = 0 ; i < arr.length ; i++ ) {
+            bar[i].style.backgroundColor = finalOrderColor
+            await sleep(20)
+        }
+}
+
+export const quickSort =  async (arr, left, right, speed) => {
     let index;
     if (arr.length > 1) {
         index = await partition(arr, left, right, speed) //index returned from partition
-        bar[index].style.backgroundColor = originalColor
-        sleep(speed)
-        if (left < index - 1) { //more elements on the left side of the pivot
-            await quickSort(arr, left, index - 1, speed)
-            bar[left].style.backgroundColor = finalOrderColor //correct order
-            bar[index - 1].style.backgroundColor = finalOrderColor
 
+        if (left < index - 1) { //more elements on the left side of the pivot      
+            await quickSort(arr, left, index - 1, speed)
         }
         if (index < right) { //more elements on the right side of the pivot
             await quickSort(arr, index, right, speed)
-            bar[index].style.backgroundColor = finalOrderColor //correct order
-            bar[right].style.backgroundColor = finalOrderColor
-
         }
-
     }
+    return arr
 }
 
 // swapping 
-export const swap = async (arr, leftIndex, rightIndex, speed) => {
+const swap = async (arr, leftIndex, rightIndex, speed ) => {
     const bar = document.querySelectorAll('.oneBar')
     bar[leftIndex].style.backgroundColor = swappingColor
     bar[rightIndex].style.backgroundColor = swappingColor
@@ -42,14 +42,14 @@ export const swap = async (arr, leftIndex, rightIndex, speed) => {
     await sleep(speed)
     bar[leftIndex].style.backgroundColor = originalColor
     bar[rightIndex].style.backgroundColor = originalColor
+
     const temp = arr[leftIndex];
     arr[leftIndex] = arr[rightIndex]
     arr[rightIndex] = temp;
-    
 
 }
 
-export const partition = async (arr, left, right, speed) => {
+const partition = async (arr, left, right, speed) => {
     const bar = document.querySelectorAll('.oneBar')
     const pivotIndex = Math.floor((right + left) / 2) //middle element
     const pivot   = arr[pivotIndex]

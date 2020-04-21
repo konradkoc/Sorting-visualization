@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Visualization = ( {barWidth, arr} ) => (
+const Visualization = ( {barWidth, arr, } ) => (
     <div className = 'visualizationContainer'>
         {
         arr.map((value, index) => (
