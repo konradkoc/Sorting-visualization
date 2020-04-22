@@ -1,12 +1,11 @@
 import React from 'react'
 
 const RangeInputSpeed = ( { animationOn, chooseSpeed, speed} ) => (
-    <div>
-        <div className='generateButton'>
+    <div className='range-big-container right'>
+        <div className='label-container'>
             <label htmlFor="speed">Define the speed!</label>
         </div>
-        <div style={rangeStyle}>
-            <p style = {{marginRight: '5px'}}>10</p>
+        <div className = 'range-container'>
             <input 
                 type='range' 
                 name="speed" 
@@ -15,19 +14,10 @@ const RangeInputSpeed = ( { animationOn, chooseSpeed, speed} ) => (
                 max='50' 
                 onChange = {chooseSpeed} 
                 onClick = {chooseSpeed}
-                disabled = {animationOn} 
-            >
+                disabled = {animationOn} >
             </input>
-            <p style = {{marginLeft: '5px'}}>100</p>
         </div>
     </div>
 )
 
 export default RangeInputSpeed
-
-
-const rangeStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-}

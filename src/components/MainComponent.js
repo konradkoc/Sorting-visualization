@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import Header from './Header'
 import Visualization from './Visualization'
 import ButtonList from './ButtonList'
-import Legend from './Legend'
 import { bubbleSort } from '../sortingAlgo/bubbleSort'
 import { selectionSort } from '../sortingAlgo/selectionSort'
 import { quickSort, quickSortLast } from '../sortingAlgo/quickSort'
@@ -22,15 +21,15 @@ export class MainComp extends Component {
             arrayLength: Math.floor(window.innerWidth/6)-2,
             maxArrayLength: Math.floor(window.innerWidth/6)-2, //1 bar is 6px with margins so this is max amount of bars on the screen
             //this one is about max height of the bar, max value possible in the array
-            maxHeight: Math.floor(0.75*window.innerHeight), 
+            maxHeight: Math.floor(0.72*window.innerHeight), 
             singleBarWidth: 2,
             animationOn: false,
             speed: 30, //bigger value faster animation
-            rodzajSorta: ''
         }
     }
     
-    //we want bars to fill almost full container, so width of single bar is dynamic, depending on window width and how many el. are in the array
+    //we want bars to fill almost full container, so width of single bar is dynamic, 
+    // depending on window width and how many el. are in the array
     calculateBarWidth = () => {
         const barWidth = (window.innerWidth - this.state.arrayLength*2)/this.state.arrayLength
         this.setState({singleBarWidth: barWidth})
@@ -43,7 +42,7 @@ export class MainComp extends Component {
 
     handleResize = () =>  {
         const widthValue = Math.floor(window.innerWidth/6)-2
-        const heightValue = Math.floor(0.75*window.innerHeight)
+        const heightValue = Math.floor(0.7*window.innerHeight)
         this.setState({maxArrayLength: widthValue})
         this.setState({maxHeight: heightValue})
         //preventing arr length to be > than max value
@@ -56,14 +55,22 @@ export class MainComp extends Component {
 
     //Fill array with random values
     newArray = () => {
-        //change arr in state only if animation isnt on 
+        //change arr in state only if animation isnt on
+        
         if (!this.state.animationOn) {
             const arr = []
             for (let i = 0; i < this.state.arrayLength; i++) {
-                arr.push(randomNumber(10, this.state.maxHeight))   
+                arr.push(randomNumber(10, this.state.maxHeight))           
             }
             this.setState({arr})
             this.calculateBarWidth()
+            const bar = document.querySelectorAll('.oneBar')
+            if(bar!== undefined) {
+                for(let i = 0 ; i < this.state.arr.length ; i++) {
+                    bar[i].style.backgroundColor = 'rgb(104, 134, 224)' 
+
+                }
+            }
         }
     }
 
@@ -119,16 +126,13 @@ export class MainComp extends Component {
                         speed={this.speed}
                         newArray={this.newArray}
                         animationOn = {this.state.animationOn} />
-                <ButtonList 
-                        bubble = {this.bubbleSortVis} 
-                        selection={this.selectionSortVis} 
-                        quick={this.quickSortVis} />
                 <Visualization 
                         arr={this.state.arr} 
                         barWidth={this.state.singleBarWidth} />
-                <Legend 
-                        rodzajSorta = {this.state.rodzajSorta} 
-                        animationOn = {this.state.animationOn} />
+                <ButtonList 
+                        bubble = {this.bubbleSortVis} 
+                        selection={this.selectionSortVis} 
+                        quick={this.quickSortVis} />   
             </Fragment>
         )
     }

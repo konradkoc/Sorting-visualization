@@ -1,4 +1,5 @@
 import React from 'react'
+import { originalColor } from '../sortingAlgo/utils'
 
 const Visualization = ( {barWidth, arr, } ) => (
     <div className = 'visualizationContainer'>
@@ -10,7 +11,7 @@ const Visualization = ( {barWidth, arr, } ) => (
             style={{
             height: `${value}px`,
             width: `${barWidth}px`,
-            backgroundColor: 'rgb(128, 159, 255)'                
+            backgroundColor: originalColor                
             }}></div>
         ))
         }

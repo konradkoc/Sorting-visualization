@@ -3,7 +3,7 @@ import RangeInputLen from './RangeInputLen'
 import RangeInputSpeed from './RangeInputSpeed'
 
 const Header = ( {value, maxValue , chooseValue, newArray, animationOn, chooseSpeed, speed} ) => (
-    <div> 
+    <div className = 'header-container'> 
         <RangeInputLen 
             value = {value} 
             maxValue = {maxValue}
@@ -12,11 +12,11 @@ const Header = ( {value, maxValue , chooseValue, newArray, animationOn, chooseSp
 
         <RangeInputSpeed 
             animationOn = { animationOn }
-            chooseSpeed = { chooseSpeed} />
-
-        <div className = 'buttonsContainer'>
+            speed = {speed}
+            chooseSpeed = { chooseSpeed } />
+        <div className = 'header-mid-container'>
             <button
-                className='generateButton' 
+                className ='mid'
                 onClick = {newArray}>
                     Generate new array!
             </button>

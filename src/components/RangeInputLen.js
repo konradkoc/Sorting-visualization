@@ -1,11 +1,11 @@
 import React from 'react'
 
 const RangeInputLen = ( { value , maxValue , chooseValue , animationOn } ) => (
-    <div>
-        <div className='generateButton'>
+    <div className='range-big-container left'>
+        <div className='label-container'>
             <label htmlFor="arrLength">Array length: {value}</label>
         </div>
-        <div style={rangeStyle}>
+        <div className = 'range-container'>
             <p style = {{marginRight: '5px'}}>10</p>
             <input 
                 type='range' 
@@ -15,8 +15,7 @@ const RangeInputLen = ( { value , maxValue , chooseValue , animationOn } ) => (
                 max={maxValue} 
                 onChange = {chooseValue} 
                 onClick = {chooseValue}
-                disabled = {animationOn} 
-            >
+                disabled = {animationOn} >
             </input>
             <p style = {{marginLeft: '5px'}}>{maxValue}</p>
         </div>
@@ -24,10 +23,3 @@ const RangeInputLen = ( { value , maxValue , chooseValue , animationOn } ) => (
 )
 
 export default RangeInputLen
-
-
-const rangeStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-}
