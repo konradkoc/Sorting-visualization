@@ -5,7 +5,7 @@ import ButtonList from './ButtonList'
 import { bubbleSort } from '../sortingAlgo/bubbleSort'
 import { selectionSort } from '../sortingAlgo/selectionSort'
 import { quickSort, quickSortLast } from '../sortingAlgo/quickSort'
-
+import {originalColor} from '../sortingAlgo/utils'
 
 function randomNumber(min, max) {
     // min and max included
@@ -21,7 +21,7 @@ export class MainComp extends Component {
             arrayLength: Math.floor(window.innerWidth/6)-2,
             maxArrayLength: Math.floor(window.innerWidth/6)-2, //1 bar is 6px with margins so this is max amount of bars on the screen
             //this one is about max height of the bar, max value possible in the array
-            maxHeight: Math.floor(0.72*window.innerHeight), 
+            maxHeight: Math.floor(0.73*window.innerHeight), 
             singleBarWidth: 2,
             animationOn: false,
             speed: 30, //bigger value faster animation
@@ -67,7 +67,7 @@ export class MainComp extends Component {
             const bar = document.querySelectorAll('.oneBar')
             if(bar!== undefined) {
                 for(let i = 0 ; i < this.state.arr.length ; i++) {
-                    bar[i].style.backgroundColor = 'rgb(104, 134, 224)' 
+                    bar[i].style.backgroundColor = originalColor
 
                 }
             }

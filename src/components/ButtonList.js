@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ButtonList = ( {bubble, selection, quick } ) => (
+const ButtonList = ( {bubble, selection, quick} ) => (
     <div className='buttons-list'>
         <div className ='btn'>
             <button onClick = {bubble}>BUBBLE SORT</button>

@@ -15,8 +15,8 @@ const Header = ( {value, maxValue , chooseValue, newArray, animationOn, chooseSp
             speed = {speed}
             chooseSpeed = { chooseSpeed } />
         <div className = 'header-mid-container'>
-            <button
-                className ='mid'
+            <button 
+                className = 'mid'
                 onClick = {newArray}>
                     Generate new array!
             </button>

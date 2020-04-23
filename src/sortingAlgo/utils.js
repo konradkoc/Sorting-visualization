@@ -7,7 +7,7 @@ export const swappingColor = 'rgb(107, 12, 98)'
 export const analyzedColor = 'hsl(60, 100%, 40%, 0.75)'
 export const correctOrderColor = 'rgb(124, 199, 115)'
 export const finalOrderColor = 'rgb(19, 107, 9)'
-export const originalColor = 'rgb(104, 134, 224)'
+export const originalColor = 'rgb(121, 144, 207)'
 
 //selection
 export const currentMinColor = 'rgb(27, 14, 48)'
