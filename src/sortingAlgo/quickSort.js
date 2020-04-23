@@ -4,7 +4,7 @@ export const quickSortLast = async (arr) => {
     const bar = document.querySelectorAll('.oneBar')
         for ( let i = 0 ; i < arr.length ; i++ ) {
             bar[i].style.backgroundColor = finalOrderColor
-            await sleep(20)
+            await sleep(10)
         }
 }
 
