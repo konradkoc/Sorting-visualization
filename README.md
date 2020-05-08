@@ -1,3 +1,9 @@
+This app is about sorting algo visualization. <br />
+Choose your setup and WATCH!. <br />
+## WARNING <br />
+There's no way to stop animation right now (only page refresh), so start with short arrays with big speed!. <br />
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
